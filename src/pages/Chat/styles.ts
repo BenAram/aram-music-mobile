@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
     container: {
@@ -114,12 +114,23 @@ const styles = StyleSheet.create({
         paddingHorizontal: 7
     },
 
-    footerInput: {
+    footerInputContainer: {
         flex: 1,
         height: '65%',
         borderRadius: 20,
 
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
+
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+
+    footerEmoji: {
+        marginHorizontal: 5
+    },
+
+    footerInput: {
+        flex: 1,
 
         fontSize: 16,
         fontFamily: 'Nunito400',
@@ -137,6 +148,54 @@ const styles = StyleSheet.create({
 
         justifyContent: 'center',
         alignItems: 'center'
+    },
+
+    footerKeyboard: {
+        width: '100%',
+        height: '33%',
+        backgroundColor: 'rgba(255, 255, 255, 0.2)'
+    },
+
+    footerKeyboardGroupsContent: {
+        alignItems: 'center'
+    },
+
+    footerKeyboardGroups: {
+        width: '100%',
+        height: '15%'
+    },
+
+    footerKeyboardGroupButton: {
+        marginHorizontal: 10
+    },
+
+    footerKeyboardHeader: {
+        width: '100%',
+        height: '10%',
+
+        paddingHorizontal: 10
+    },
+
+    footerKeyboardTitle: {
+        fontSize: 16,
+        fontFamily: 'Nunito400',
+        color: '#d9dadc'
+    },
+
+    footerKeyboardMainContent: {
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+
+    footerKeyboardMain: {
+        width: '100%',
+        height: '75%'
+    },
+
+    footerKeyboardMainText: {
+        color: '#d9dadc',
+        fontSize: 30,
+        fontFamily: 'Nunito400'
     },
 
     modalizeContainer: {

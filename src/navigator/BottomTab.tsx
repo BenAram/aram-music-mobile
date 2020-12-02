@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import {
     View
 } from 'react-native'
+import { AppLoading } from 'expo'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
@@ -21,6 +22,7 @@ function BottomTab(): JSX.Element | null {
 
     const navigation = useNavigation()
 
+    const didMount = useSelector((state: any) => state.didMount)
     const isLoaded: boolean = useSelector((state: any) => state.music.isLoaded)
 
     const [didFocus, setDidFocus] = useState<boolean>(false)
@@ -64,6 +66,10 @@ function BottomTab(): JSX.Element | null {
             setUrl(newUrl.url)
         })
     }, [])
+
+    // if (!didMount) {
+    //     return <AppLoading />
+    // }
 
     return <View style={{ flex: 1 }}>
         <Navigator

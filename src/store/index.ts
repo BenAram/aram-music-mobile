@@ -30,8 +30,11 @@ const INITIAL_STATE_MUSIC: StoreStateMusic = {
         type: '',
         user_owner: {
             name: '',
-            avatar: ''
-        }
+            avatar: '',
+            id: 0
+        },
+        createdAt: '',
+        id: 0
     }
 }
 
@@ -53,7 +56,24 @@ const INITIAL_STATE_MUSIC_TO_EDIT: Music | number | null = null
 const INITIAL_STATE_PLAYLIST_TO_EDIT: Playlist = {
     name: '',
     musics: [],
-    public: false
+    public: false,
+    editable: false,
+    id: 0,
+    owner: '',
+    owner_id: 0
+}
+
+function didMount(state = false, actions: any): boolean {
+    switch (actions.type) {
+        case 'clean-did-mount':
+            return false
+        case 'disactive-did-mount':
+            return false
+        case 'active-did-mount':
+            return true
+        default:
+            return state
+    }
 }
 
 function music(state = INITIAL_STATE_MUSIC, actions: any) {
@@ -140,6 +160,7 @@ function playlist(state = INITIAL_STATE_PLAYLIST, actions: any) {
 }
 
 const reducers = combineReducers({
+    didMount,
     music,
     musicToEdit,
     actualSearch,

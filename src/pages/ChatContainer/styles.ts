@@ -1,6 +1,15 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+    removeFriendButton: {
+        maxWidth: 50,
+        backgroundColor: '#c82333',
+
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+
     text: {
         color: '#d9dadc',
         fontSize: 18,
@@ -149,12 +158,14 @@ const styles = StyleSheet.create({
         marginRight: 15
     },
 
+    friendsSwipeable: {
+        width: '100%',
+        height: 50
+    },
+
     friendsButtons: {
         flexDirection: 'row',
         alignItems: 'center',
-
-        width: '100%',
-        height: 50,
 
         paddingHorizontal: 10
     },
@@ -217,6 +228,35 @@ const styles = StyleSheet.create({
         borderRadius: 18,
 
         marginLeft: 5
+    },
+
+    modalizeContainer: {
+        flex: 1,
+        backgroundColor: '#3e3e3e',
+
+        padding: 10
+    },
+
+    modalizeButton: {
+        width: '100%',
+        height: 40,
+
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+
+    modalizeButtonDivider: {
+        width: 3,
+        height: '100%',
+        backgroundColor: '#d9dadc',
+
+        marginHorizontal: 10
+    },
+
+    modalizeButtonText: {
+        color: '#d9dadc',
+        fontSize: 16,
+        fontFamily: 'Nunito400'
     }
 })
 

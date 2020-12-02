@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { AppLoading } from 'expo'
 import AsyncStorage from '@react-native-community/async-storage'
+import { useDispatch } from 'react-redux'
 
 import AudioPlayer from '../pages/AudioPlayer'
 import BottomTab from './BottomTab'
@@ -16,6 +17,8 @@ import Upload from '../pages/Upload'
 import User from '../pages/User'
 
 function Routes(): JSX.Element {
+    const dispatch = useDispatch()
+
     const { Navigator, Screen } = createStackNavigator()
 
     const [didMount, setDidMount] = useState<boolean>(false)
@@ -28,6 +31,7 @@ function Routes(): JSX.Element {
                 const email = await AsyncStorage.getItem('email')
                 const token = await AsyncStorage.getItem('token')
                 if (rememberme && email && token) {
+                    dispatch({ type: 'active-did-mount' })
                     setInitialRouteName('app')
                 } else {
                     setInitialRouteName('landing')

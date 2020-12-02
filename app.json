@@ -2,7 +2,7 @@
   "expo": {
     "name": "Aram Music",
     "slug": "ba-music-office",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

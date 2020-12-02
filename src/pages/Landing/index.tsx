@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { Checkbox } from 'react-native-paper'
 import { Feather } from '@expo/vector-icons'
 import Divider from '../../components/Divider'
+import { useDispatch } from 'react-redux'
 
 import styles from './styles'
 
@@ -22,6 +23,8 @@ import logo from '../../images/logo.png'
 import api from '../../services/api'
 
 function Landing(): JSX.Element {
+    const dispatch = useDispatch()
+
     const navigation = useNavigation()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -53,6 +56,7 @@ function Landing(): JSX.Element {
                     setError(true)
                     setErrorMessage(data.message)
                 } else {
+                    dispatch({ type: 'active-did-mount' })
                     if (rememberMe) {
                         await AsyncStorage.setItem('email', email)
                         await AsyncStorage.setItem('token', data.token)

@@ -55,7 +55,7 @@ export default function App(): JSX.Element {
     Nunito700: Nunito_700Bold
   })
 
-  const actualVersion = '0.2.3'
+  const actualVersion = '0.2.4'
 
   const [news, setNews] = useState<News>()
   const [downloadable, setDownloadable] = useState<boolean>(false)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
     View,
     Text,
@@ -45,6 +45,7 @@ interface FriendsRequestsProps {
     friendsRequests: Array<Friendship>
     hide: Function
     setFriendsRequests: Function
+    myRequests: Array<Friendship>
 }
 
 function FriendsRequests(props: FriendsRequestsProps): JSX.Element {
@@ -78,8 +79,26 @@ function FriendsRequests(props: FriendsRequestsProps): JSX.Element {
         }
     }
 
-    return <View style={styles.container}>
-        <View style={styles.header}>
+    function handleDeleteFriend(id: number): Function {
+        return async function() {
+            try {
+                const { data } = await api.delete(`/friends/${id}`, {
+                    headers: {
+                        email: await AsyncStorage.getItem('email'),
+                        token: await AsyncStorage.getItem('token')
+                    }
+                })
+                if (data.error) {
+                    alert(data.message)
+                }
+            } catch(err) {
+                alert('Um erro ocorreu')
+            }
+        }
+    }
+
+    const Header = useCallback(() => {
+        return <View style={styles.header}>
             <RectButton onPress={handleGoBack}>
                 <Feather
                     name="arrow-left"
@@ -88,12 +107,34 @@ function FriendsRequests(props: FriendsRequestsProps): JSX.Element {
                 />
             </RectButton>
         </View>
+    }, [])
+
+    return <View style={styles.container}>
+        <Header/>
         <View style={styles.main}>
-            {props.friendsRequests.length === 0 ? <View style={styles.mainNoFriendsRequests}>
-                <Image source={logo}/>
-                <Text style={styles.mainNoFriendsRequestsText}>Você não tem pedidos de amizade</Text>
-            </View> : null}
             <ScrollView style={styles.mainScrollView}>
+                {props.myRequests.length > 0 ? <Text style={styles.title}>Seus pedidos de amizade</Text> : null}
+                {props.myRequests.map(myRequest => <View key={myRequest.id} style={styles.mainUserContainer}>
+                    <View style={styles.mainUserInfoContainer}>
+                        <Image
+                            style={styles.mainUserAvatar}
+                            source={myRequest.to.avatar ? { uri: `${url}/avatar/${myRequest.to.avatar}` } : logo}
+                        />
+                        <Text style={styles.mainUserName}>{myRequest.to.name}</Text>
+                    </View>
+                    <TouchableOpacity onPress={handleDeleteFriend(myRequest.id) as any}>
+                        <Feather
+                            name="x"
+                            size={26}
+                            color="#d9dadc"
+                        />
+                    </TouchableOpacity>
+                </View>)}
+                {props.friendsRequests.length === 0 && props.myRequests.length === 0 ? <View style={styles.mainNoFriendsRequests}>
+                    <Image source={logo}/>
+                    <Text style={styles.mainNoFriendsRequestsText}>Você não tem pedidos de amizade</Text>
+                </View> : null}
+                {props.friendsRequests.length > 0 ? <Text style={styles.title}>Pedidos de amizade</Text> : null}
                 {props.friendsRequests.map(friendRequest => <View key={friendRequest.id} style={styles.mainUserContainer}>
                     <View style={styles.mainUserInfoContainer}>
                         <Image

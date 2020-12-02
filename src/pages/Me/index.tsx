@@ -180,6 +180,7 @@ function User(): JSX.Element {
         audio.unloadAsync().then(() => null).catch(() => null)
         dispatch({ type: 'turn-off' })
         dispatch({ type: 'change-music', music: null })
+        dispatch({ type: 'disactive-did-mount' })
         AsyncStorage.clear().then(() => null).catch(() => null)
         navigation.navigate('landing')
     }

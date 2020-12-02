@@ -1,6 +1,12 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+    title: {
+        fontSize: 16,
+        fontFamily: 'Nunito700',
+        color: '#d9dadc'
+    },
+
     container: {
         flex: 1,
         backgroundColor: '#3e3e3e'
@@ -39,8 +45,8 @@ const styles = StyleSheet.create({
     },
 
     mainScrollView: {
+        flex: 1,
         width: '100%',
-        height: '100%',
 
         padding: 10
     },

@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     header: {
         width: '100%',
         height: '8%',
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
 
         borderBottomWidth: 1,
         borderBottomColor: '#d9dadc',
@@ -110,7 +111,8 @@ const styles = StyleSheet.create({
 
     mainInfoScrollImage: {
         width: 80,
-        height: 80
+        height: 80,
+        borderRadius: 10
     },
 
     mainInfoScrollAvatar: {
